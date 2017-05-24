@@ -24,4 +24,4 @@ test:
         allowed_warnings: 10
         skip_classes: true
     php_loc:
-        directory: "src"
+        directory: "CONTAO"
