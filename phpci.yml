@@ -9,11 +9,11 @@ setup:
         action: "install"
 
 test:
-    php_unit:
-        config:
-            - "app/phpunit.xml.dist"
-        coverage: "coverage"
-        args: "--stderr"
+#    php_unit:
+#        config:
+#            - "app/phpunit.xml.dist"
+#        coverage: "coverage"
+#        args: "--stderr"
     php_mess_detector:
         allow_failures: true
     php_code_sniffer:
@@ -24,4 +24,4 @@ test:
         allowed_warnings: 10
         skip_classes: true
     php_loc:
-        directory: "CONTAO"
+        directory: "."
