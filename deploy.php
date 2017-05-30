@@ -5,7 +5,7 @@ require 'recipe/common.php';
 
 // Configuration
 
-set('repository', 'git@github.com:jaycupp/yakup.karahan.de.git');
+set('repository', 'ssh-w00bb878@w00bb878.kasserver.com:/www/htdocs/w00bb878/yakup/git/yakup.karahan.de.git');
 set('git_tty', true); // [Optional] Allocate tty for git on first deployment
 set('ssh_multiplexing', false);
 set('shared_files', []);
@@ -15,9 +15,11 @@ set('writable_dirs', []);
 
 // Hosts
 
-host('karahan.de')
+host('w00bb878.kasserver.com')
+    ->user('ssh-w00bb878')
     ->stage('production')
-    ->set('deploy_path', '/www/htdocs/yakup/contao');
+    ->set('deploy_path', '/www/htdocs/w00bb878/yakup/contao');
+
 
 localhost()
     ->stage('local')
