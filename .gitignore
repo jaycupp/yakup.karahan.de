@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.buildpath
+.project
+.settings/
+.build/
+.idea/
+nbproject/
+
+# Contao
+.tx/
+assets/
+contao/
+composer/
+files/tinymce.css
+files/tiny_templates
+share/
+system/
+templates/.htaccess
+templates/index.html
+vendor/
+.htaccess
+.htaccess.default
+build.xml
+composer.json
+composer.lock
+index.php
+README.md
+robots.txt
