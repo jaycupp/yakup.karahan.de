@@ -9,9 +9,6 @@ setup:
     composer:
         action: "install"
 
-setup:
-    shell:
-        - "cd %BUILD_PATH% && php artisan migrate" # Laravel Migrations
 test:
 #    php_unit:
 #        config:
