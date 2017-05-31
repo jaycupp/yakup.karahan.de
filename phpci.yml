@@ -29,4 +29,4 @@ test:
 
 complete:
     shell:
-        - "dep deploy beta" # Laravel Migrations
+        - "dep deploy local" # Laravel Migrations
