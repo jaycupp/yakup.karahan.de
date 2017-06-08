@@ -1,0 +1,15 @@
+{
+  "name": "yakup.karahan.de",
+  "version": "1.0.0",
+  "description": "Profile Website with skill Demos",
+  "main": "files/js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yakup Karahan",
+  "license": "MIT",
+  "devDependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}

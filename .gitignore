@@ -1,5 +1,11 @@
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Sportlight-V100
+.Trashes
+Icon?
+ehthumbs.db
 Thumbs.db
 
 # IDEs
@@ -30,3 +36,7 @@ composer.lock
 index.php
 README.md
 robots.txt
+
+#Packge Manager
+bower_components/
+node_modules/
