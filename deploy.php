@@ -9,13 +9,17 @@ set('live_server', "w00bb878.kasserver.com");
 set('live_server_path', "/www/htdocs/w00bb878/yakup");
 set('live_server_ssh_user', "ssh-w00bb878");
 
-set('live_db_name', "");
-set('live_db_user', "");
-set('live_db_pw', "");
 
-set('local_db_name', "");
-set('local_db_user', "");
-set('local_db_pw', "");
+$json_credentials = file_get_contents('./credentials.json', true);
+$credentials = json_decode($json_credentials, true);
+
+set('live_db_name', $credentials["live_db_name"]);
+set('live_db_user', $credentials["live_db_user"]);
+set('live_db_pw', $credentials["live_db_pw"]);
+
+set('local_db_name', $credentials["local_db_name"]);
+set('local_db_user', $credentials["local_db_user"]);
+set('local_db_pw', $credentials["local_db_pw"]);
 
 set('repository', '{{live_server_ssh_user}}@{{live_server}}:{{live_server_path}}/git/yakup.karahan.de.git');
 set('git_tty', true); // [Optional] Allocate tty for git on first deployment

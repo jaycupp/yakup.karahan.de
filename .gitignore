@@ -40,3 +40,6 @@ robots.txt
 #Packge Manager
 bower_components/
 node_modules/
+
+#Other
+credentials.json
