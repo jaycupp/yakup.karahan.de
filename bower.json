@@ -16,7 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "pushy": "^1.1.0"
+    "pushy": "^1.1.0",
+    "font-awesome": "fontawesome#^4.7.0"
   },
   "devDependencies": {
     "font-awesome": "fontawesome#^4.7.0"
