@@ -5,13 +5,13 @@ require 'recipe/common.php';
 
 // Configuration
 // You have to set live server credentials. They are not set because of security reasons.
-set('live_server', "w00bb878.kasserver.com");
-set('live_server_path', "/www/htdocs/w00bb878/yakup");
-set('live_server_ssh_user', "ssh-w00bb878");
-
-
+// Store the credentials in credentials.json.
 $json_credentials = file_get_contents('./credentials.json', true);
 $credentials = json_decode($json_credentials, true);
+
+set('live_server', $credentials["live_server"]);
+set('live_server_path', $credentials["live_server_path"]);
+set('live_server_ssh_user', $credentials["live_server_ssh_user"]);
 
 set('live_db_name', $credentials["live_db_name"]);
 set('live_db_user', $credentials["live_db_user"]);
@@ -57,8 +57,16 @@ task('deploy:migrate', function () {
 })->onStage('local');
 
 desc('copy release files to html Directory');
+task('deploy:update_libs', function () {
+  run('bower install');
+  run('rm -rf {{deploy_path}}/releases');
+});
+
+desc('copy release files to html Directory');
 task('deploy:movefiles', function () {
   run('rsync --delete --exclude=".git" --exclude=".dep" -avczer {{release_path}}/* {{deploy_path}}');
+  run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
+  run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
   run('rm -rf {{deploy_path}}/releases');
 });
 
@@ -71,6 +79,7 @@ task('deploy', [
     'deploy:update_code',
     //'deploy:shared',
     'deploy:writable',
+    'deploy:update_libs',
     'deploy:movefiles',
     'deploy:migrate',
     //'deploy:vendors',

@@ -226,15 +226,15 @@ a {
   }
 }
 .services {
-
   padding: 0 2rem 3rem 2rem;
   background-color: #F9F9F9;
+  text-align: center;
   > h1 {
     width: 100%;
     text-align: center;
   }
   .services-container {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 1280px;
