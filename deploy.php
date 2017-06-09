@@ -9,13 +9,13 @@ set('live_server', "w00bb878.kasserver.com");
 set('live_server_path', "/www/htdocs/w00bb878/yakup");
 set('live_server_ssh_user', "ssh-w00bb878");
 
-set('live_db_name', "d0265a9c");
-set('live_db_user', "d0265a9c");
-set('live_db_pw', "cyzAzT8gbt2ahXW35roJ");
+set('live_db_name', "");
+set('live_db_user', "");
+set('live_db_pw', "");
 
-set('local_db_name', "d0265a9c");
-set('local_db_user', "d0265a9c");
-set('local_db_pw', "cyzAzT8gbt2ahXW35roJ");
+set('local_db_name', "");
+set('local_db_user', "");
+set('local_db_pw', "");
 
 set('repository', '{{live_server_ssh_user}}@{{live_server}}:{{live_server_path}}/git/yakup.karahan.de.git');
 set('git_tty', true); // [Optional] Allocate tty for git on first deployment
@@ -46,17 +46,17 @@ task('deploy:preview', function () {
     run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
 })->onStage('local');
 
-desc('copy release files to html Directory');
-task('deploy:movefiles', function () {
-    run('rsync --delete --exclude=".git" --exclude=".dep" -avczer {{release_path}}/* {{deploy_path}}');
-    run('rm -rf {{deploy_path}}/releases');
-});
-
 desc('Migrate live database and Configuration to local project');
 task('deploy:migrate', function () {
     run('ssh {{live_server_ssh_user}}@{{live_server}} "mysqldump --default-character-set="UTF8" --add-drop-table -h localhost -u {{live_db_user}} -p\'{{live_db_pw}}\' {{live_db_name}}" >> {{deploy_path}}/contaodb_{{release_name}}.sql');
     run('mysql --default-character-set=UTF8 --host=localhost -u contao -p\'contaopw\' contao1 < {{deploy_path}}/contaodb_{{release_name}}.sql');
 })->onStage('local');
+
+desc('copy release files to html Directory');
+task('deploy:movefiles', function () {
+  run('rsync --delete --exclude=".git" --exclude=".dep" -avczer {{release_path}}/* {{deploy_path}}');
+  run('rm -rf {{deploy_path}}/releases');
+});
 
 desc('Restart PHP-FPM service');
 desc('Deploy your project');
