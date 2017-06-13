@@ -10,6 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "requirejs": "^2.3.3"
   }
 }

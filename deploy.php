@@ -17,6 +17,8 @@ set('live_db_name', $credentials["live_db_name"]);
 set('live_db_user', $credentials["live_db_user"]);
 set('live_db_pw', $credentials["live_db_pw"]);
 
+set('local_server_path', $credentials["local_server_path"]);
+
 set('local_db_name', $credentials["local_db_name"]);
 set('local_db_user', $credentials["local_db_user"]);
 set('local_db_pw', $credentials["local_db_pw"]);
@@ -38,7 +40,7 @@ host(get('live_server'))
 
 localhost()
     ->stage('local')
-    ->set('deploy_path', '/var/www/html/contao');
+    ->set('deploy_path', '{{local_server_path}}/contao');
 
 
 // Tasks
@@ -48,6 +50,7 @@ task('deploy:preview', function () {
     run('rsync --delete --exclude=".git" --exclude=".dep" -avczer ./templates/* {{deploy_path}}/templates');
     run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
     run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
+    run('rsync --exclude=".git" --exclude=".dep" -avczer ./node_modules/requirejs/require.js {{deploy_path}}/files/js');
 })->onStage('local');
 
 desc('Migrate live database and Configuration to local project');
@@ -58,8 +61,9 @@ task('deploy:migrate', function () {
 
 desc('copy release files to html Directory');
 task('deploy:update_libs', function () {
-  run('bower install');
-  run('rm -rf {{deploy_path}}/releases');
+  //run('scp {{live_server_ssh_user}}@{{live_server}}  {{live_server_ssh_user}}@{{live_server}}:{{live_server_path}}/contao');
+  //run('bower install');
+  //run('rm -rf {{deploy_path}}/releases');
 });
 
 desc('copy release files to html Directory');
@@ -79,7 +83,7 @@ task('deploy', [
     'deploy:update_code',
     //'deploy:shared',
     'deploy:writable',
-    'deploy:update_libs',
+    //'deploy:update_libs',
     'deploy:movefiles',
     'deploy:migrate',
     //'deploy:vendors',

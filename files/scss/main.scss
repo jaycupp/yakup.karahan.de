@@ -1,4 +1,5 @@
 @import "font-awesome";
+@import "pushy";
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -19,18 +20,23 @@ a {
   color: white;
 }
 .button {
+  display: inline-block;
+  max-width: 80%;
+  padding: 25px 80px;
+  @media (max-width: 450px) {
+    padding: 5% 10%;
+  }
+  margin: 15px 30px;
   border: none;
   font-family: inherit;
   font-size: inherit;
   color: inherit;
   background: none;
   cursor: pointer;
-  padding: 25px 80px;
-  display: inline-block;
-  margin: 15px 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
+  white-space: nowrap;
   outline: none;
   position: relative;
   transition: all 0.3s;
@@ -73,6 +79,9 @@ a {
     line-height: 3.5;
     color: #fff;
     transition: all 0.3s;
+    @media (max-width: 450px) {
+      color: transparent;
+    }
   }
 }
 .button-style-icon {
@@ -82,6 +91,30 @@ a {
   }
   &:hover::before {
     left: 80%;
+  }
+}
+
+/* Menu Button */
+.menu-btn {
+  position: fixed;
+	width: 100px;
+	padding: 10px;
+	margin-bottom: 30px;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+	background: #000;
+	color: #FFF;
+	text-align: center;
+	cursor: pointer;
+	border: 0px;
+  //animation: fadeout 0.3s ease-out both;
+  display: none;
+	&:hover {
+		//opacity: 0.6;
+	}
+  .mobile & {
+    //animation: fadein 0.3s ease-in both;
   }
 }
 #top {
@@ -104,6 +137,34 @@ a {
   padding: 1rem 0;
   .inside {
     padding: 0.5rem 3rem;
+  }
+  .mobile & {
+    left: auto;
+    background-color: black;
+    z-index: 9999;
+    transition: unset;
+    text-align: center;
+    padding: 0;
+    .inside {
+      padding: 0;
+    }
+    nav{
+      //animation: fadeout 0.5s ease-in-out both;
+      display: none;
+      &.pushy {
+        display:block;
+      }
+    }
+    nav ul {
+      flex-direction: column;
+      padding: 0;
+      li {
+        margin: 0;
+        a {
+          padding-bottom: 0;
+        }
+      }
+    }
   }
   nav ul {
     display: inline-flex;
@@ -146,6 +207,7 @@ a {
   }
 }
 .scroll-top {
+  display: none;
   position: fixed;
   right: 0;
   bottom: 2rem;
@@ -157,12 +219,9 @@ a {
   line-height: 1rem;
   text-align: center;
   overflow: hidden;
-  animation: fadein 0.5s ease-in-out both;
-
-  //transition: opacity 1s ease-out, height 0.3s ease-in;
-  &.ontop {
-    //display: none;
-    animation: fadeout 0.5s ease-in-out both;
+  //animation: fadein 0.5s ease-in-out both;
+  .home & {
+    display: inline-block;
   }
 }
 .privacy, .impress {
@@ -204,6 +263,8 @@ a {
 .about-me {
   display: flex;
   flex-wrap:wrap;
+  align-items: center;
+  background-color: #F9F9F9;
   .image_container {
     position: relative;
     img {
@@ -212,15 +273,24 @@ a {
   }
   .col1, .col2 {
     flex: 1 1 auto;
-    width: 30rem;
+    width: 28rem;
   }
   .col1 {
-    //min-width: 25rem;
+    height: 30rem;
+    @media (max-width: 1024px) {
+      height: auto;
+      .image_container {
+        position: relative;
+        img {
+          position: static;
+        }
+      }
+    }
   }
   .col2 {
-    margin: 3rem;
+    margin: 0 3rem;
     h1 {
-      margin: 3rem 0;
+      margin: 0;
       font-size: 2.25rem;
     }
   }
@@ -268,9 +338,17 @@ a {
           height: 2px;
           background-color: #24b662;
           top: 4rem;
-          left: 0;
+          left: 45%;
+          left: calc(50% - 1rem);
         }
       }
+    }
+  }
+  @media (max-width: 450px) {
+    padding: 0 1rem 3rem 1rem;
+    .services-container > .ce_text {
+      margin: 1rem 0;
+      width: auto;
     }
   }
 }
@@ -281,13 +359,21 @@ a {
     text-align: center;
     > h1 {
       display: inline-block;
-      width: 20rem;
-      padding: 0.5rem;
+      padding: 0 3rem;
+      @media (max-width: 450px) {
+        padding: 0 1.5rem;
+      }
       font-weight: semi-bold;
       letter-spacing: 1px;
       border-bottom: 4px double green;
       border-bottom-left-radius: 1.5rem;
       border-bottom-right-radius: 1.5rem;
+    }
+  }
+  @media (max-width: 450px) {
+    padding: 0 0rem;
+    .ce_text.first > h1 {
+      padding: 0 1.5rem;
     }
   }
   .icon {
@@ -332,16 +418,17 @@ a {
 
     .contact-detail {
       text-align: center;
+      margin: 2rem;
       &:hover {
         .icon {
           box-shadow: 0px 8px 15px 0px rgba(90, 91, 95, 0.33);
         }
       }
       .icon {
-        background-color: white;
-        border-radius: 50%;
         width: 5.5rem;
         height: 5.5rem;
+        border-radius: 50%;
+        background-color: white;
         line-height: 5.5rem;
       }
 
@@ -352,28 +439,29 @@ a {
     }
   }
   .contact-form {
+    text-align: center;
+    > .ce_form {
+      display: inline-block;
+      width: 100%;
+      max-width: 50rem;
+    }
     .formbody {
-      display: flex;
-      flex-wrap: wrap;
-      width: 37rem;
-      .widget {
-        display: inline-block;
-        margin: 1rem;
-        &.reason {
-          width: 100%;
-          .reason {
-            width: 100%;
-          }
+      > .widget-group {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1 auto;
+        > .widget {
+          width: 20rem;
         }
-        &.message {
-          width: 100%;
-          .message{
-            width: 100%;
-            height: 10rem;
-          }
+      }
+      .widget {
+        margin: 1rem;
+        flex: 1 1 auto;
+        .message {
+          height: 10rem;
         }
         > * {
-          width: 16.5rem;
+          width: 100%;
           height: 3rem;
           padding-left: 1rem;
           border: solid 2px transparent;
@@ -396,7 +484,7 @@ a {
     }
   }
   .social {
-    height: 10rem;
+    margin-bottom: 4rem;
     .icon {
       font-size: 2.5rem;
       color: white;
@@ -405,6 +493,7 @@ a {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      padding-left: 0;
       li {
         list-style-type: none;
         margin: 0.5rem;
@@ -421,18 +510,38 @@ a {
     justify-content: space-around;
     align-content: center;
     height: 100%;
+    margin-left: 1rem;
+    margin-right: 3rem;
     font-size: 0.85rem;
     color: white;
     a {
+      white-space: nowrap;
     }
     ul {
       display: flex;
+      flex-wrap: wrap;
+      padding: 0;
       li {
         list-style-type: none;
         border-left: white solid 2px;
         padding: 0 1rem;
         &.first {
-          border-left: none;
+          border-left: transparent solid 2px;
+        }
+        @media (max-width: 450px) {
+          width: 50%;
+          &.first {
+            border-left: white solid 2px;
+          }
+        }
+      }
+    }
+    @media (max-width: 450px) {
+      justify-content: flex-start;
+      ul li {
+        width: 50%;
+        &.first {
+          border-left: white solid 2px;
         }
       }
     }
