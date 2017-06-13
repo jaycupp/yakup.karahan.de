@@ -50,7 +50,9 @@ task('deploy:preview', function () {
     run('rsync --delete --exclude=".git" --exclude=".dep" -avczer ./templates/* {{deploy_path}}/templates');
     run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
     run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
-    run('rsync --exclude=".git" --exclude=".dep" -avczer ./node_modules/requirejs/require.js {{deploy_path}}/files/js');
+    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/animate.css/animate.css {{deploy_path}}/files/css/animate.css');
+    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/wow/dist/wow.js {{deploy_path}}/files/js');
+    //run('rsync --exclude=".git" --exclude=".dep" -avczer ./node_modules/jquery-aniview/dist/* {{deploy_path}}/files/js');
 })->onStage('local');
 
 desc('Migrate live database and Configuration to local project');
@@ -69,8 +71,8 @@ task('deploy:update_libs', function () {
 desc('copy release files to html Directory');
 task('deploy:movefiles', function () {
   run('rsync --delete --exclude=".git" --exclude=".dep" -avczer {{release_path}}/* {{deploy_path}}');
-  run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
-  run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
+  //run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
+  //run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
   run('rm -rf {{deploy_path}}/releases');
 });
 
