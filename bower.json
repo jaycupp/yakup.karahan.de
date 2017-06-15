@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "font-awesome": "fontawesome#^4.7.0",
-    "animate.css": "^3.5.2",
-    "wow": "wowjs#^1.1.2"
+    "wow": "wowjs#^1.1.2",
+    "animatewithsass": "^3.2.2"
   }
 }

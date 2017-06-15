@@ -48,10 +48,10 @@ desc('Migrate live database and Configuration to local project');
 task('deploy:preview', function () {
     run('rsync --delete --exclude=".git" --exclude=".dep" -avczer ./files/* {{deploy_path}}/files');
     run('rsync --delete --exclude=".git" --exclude=".dep" -avczer ./templates/* {{deploy_path}}/templates');
-    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/pushy/* {{deploy_path}}/files');
-    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
-    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/animate.css/animate.css {{deploy_path}}/files/css/animate.css');
-    run('rsync --exclude=".git" --exclude=".dep" -avczer ./bower_components/wow/dist/wow.js {{deploy_path}}/files/js');
+    run('rsync -avczer ./bower_components/pushy/* {{deploy_path}}/files');
+    run('rsync -avczer ./bower_components/font-awesome/* {{deploy_path}}/files');
+    run('rsync -avczer ./bower_components/animatewithsass/* {{deploy_path}}/files/scss');
+    run('rsync -avczer ./bower_components/wow/dist/wow.js {{deploy_path}}/files/js');
     //run('rsync --exclude=".git" --exclude=".dep" -avczer ./node_modules/jquery-aniview/dist/* {{deploy_path}}/files/js');
 })->onStage('local');
 
@@ -64,9 +64,10 @@ task('deploy:migrate', function () {
 desc('copy release files to html Directory');
 task('deploy:update_libs', function () {
   //run('scp {{live_server_ssh_user}}@{{live_server}}  {{live_server_ssh_user}}@{{live_server}}:{{live_server_path}}/contao');
-  run('scp -r bower_components/font-awesome/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
-  run('scp -r bower_components/pushy/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
-  run('scp -r bower_components/wow/dist/wow.js {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  //run('rsync -avczer ./bower_components/font-awesome/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  run('scp -r ./bower_components/font-awesome/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  //run('scp -r bower_components/pushy/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  //run('scp -r bower_components/wow/dist/wow.js {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
   //run('bower install');
   //run('rm -rf {{deploy_path}}/releases');
 });
