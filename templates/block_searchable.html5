@@ -1,7 +1,7 @@
 <?php
   $animations = array("lightSpeedIn", "slideInRight", "slideInLeft", "rotateIn", "flipInY", "bounceInDown", "zoomInDown", "rollIn", "bounceInUp");
 ?>
-<div class="<?= $this->class ?> block wow <?php echo $animations[rand(0, 9)] ?>"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?> "<?php endif; ?> data-av-animation="">
+<div class="<?= $this->class ?> block wow <?php echo $animations[rand(0, 9)] ?>"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?> "<?php endif; ?>>
 
   <?php if ($this->headline): ?>
     <<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>

@@ -219,10 +219,6 @@ a {
   line-height: 1rem;
   text-align: center;
   overflow: hidden;
-  //animation: fadein 0.5s ease-in-out both;
-  .home & {
-    display: inline-block;
-  }
 }
 .privacy, .impress {
   #main {
@@ -256,6 +252,9 @@ a {
   }
   .teaser-text {
     font-size: 3rem;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
     font-weight: 500;
     letter-spacing: 5px;
   }
@@ -264,7 +263,7 @@ a {
   display: flex;
   flex-wrap:wrap;
   align-items: center;
-  background-color: #F9F9F9;
+  //background-color: #F9F9F9;
   .image_container {
     position: relative;
     img {
@@ -276,7 +275,7 @@ a {
     width: 28rem;
   }
   .col1 {
-    height: 30rem;
+    height: 45rem;
     @media (max-width: 1024px) {
       height: auto;
       .image_container {
@@ -353,7 +352,7 @@ a {
   }
 }
 #contact {
-  padding: 0 2rem;
+  padding: 0;
   background-color: #f9f9f9;
   .ce_text.first {
     text-align: center;
@@ -410,11 +409,21 @@ a {
   .fa-dribbble {
     background-color: #ea4c89;
   }
+  .fa-xing {
+    background-color: #007575;
+  }
+  .fa-linkedin {
+    background-color: #0077B5;
+  }
+  .contact-intro {
+    background-color: white;
+  }
   .contact-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 2rem;
+    background-color: white;
 
     .contact-detail {
       text-align: center;

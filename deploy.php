@@ -64,6 +64,9 @@ task('deploy:migrate', function () {
 desc('copy release files to html Directory');
 task('deploy:update_libs', function () {
   //run('scp {{live_server_ssh_user}}@{{live_server}}  {{live_server_ssh_user}}@{{live_server}}:{{live_server_path}}/contao');
+  run('scp -r bower_components/font-awesome/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  run('scp -r bower_components/pushy/* {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
+  run('scp -r bower_components/wow/dist/wow.js {{live_server_ssh_user}}@{{live_server}}:{{deploy_path}}/files');
   //run('bower install');
   //run('rm -rf {{deploy_path}}/releases');
 });

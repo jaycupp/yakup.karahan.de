@@ -48,7 +48,7 @@ $(document).ready(function() {
     $(window).scroll(function() {
         stickyNav();
     });
-    $('.home .home-nav li a')
+    $('.home .home-nav li a, .scroll-link')
       .click(function(event) {
         event.preventDefault();
         var href = $(this).attr('href');
@@ -64,4 +64,5 @@ $(document).ready(function() {
     );
     pushyInit();
     new WOW().init();
+
 });
